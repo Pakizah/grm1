@@ -1,0 +1,19 @@
+﻿@model IEnumerable<GrmAdmin.Models.Ingredient>
+
+
+@foreach (var v in Model)
+{
+
+    <tr>
+        <td>@v.Id</td>
+        <td>@v.Name </td>
+        <td>@v.Type</td>
+        <td>@v.Image</td>
+        <td>@v.Urdu</td>
+        <td>@v.Unit</td>
+        <td> <a href="/Home/EditIngredient/@v.Id" class="btn btn-xs btn-success">Edit</a> </td>
+        <td> <a href="/Home/DeleteIng/@v.Id" class="btn btn-xs btn-danger">Delete</a> </td>
+    </tr>
+}
+
+

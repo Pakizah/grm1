@@ -1,0 +1,72 @@
+﻿@model GrmAdmin.Models.User
+      
+<!-- jQuery -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Login.js"></script>
+<div class="signin-form">
+    <div class="container">
+
+
+        @using (Html.BeginForm("VerifyLogin", "Account", FormMethod.Post, new { @class = "form-signin", id = "login" }))
+        {
+            <center>
+                <h2 class="form-signin-heading"><font color="#0c6a00">Login</font></h2><hr />
+                <div id="font">
+                    @ViewBag.LoginMessage
+
+                </div>
+                <div id="error">
+                    <!-- error will be shown here ! -->
+                </div>
+                <table>
+                    <tr>
+                        <td>
+
+                            <div class="form-group">
+
+                                @Html.TextBoxFor(model =>model.Email, new { @class = "form-control", id = "Email", placeholder = "Enter Email" })
+                                <div id="validity">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <font color="black">
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter Password", id = "Password" })
+                                </font>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <center><input class="btn-success" type="submit" value="Login"></center>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <a href="/Account/Register"><font color="#0c6a00">Get Yourself Registered First</font></a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        }
+    </div>
+</div>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="~/Scripts/bootstrap.min.js"></script>

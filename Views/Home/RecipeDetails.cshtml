@@ -1,0 +1,41 @@
+﻿@model GrmAdmin.Models.Recipe
+@{
+    ViewBag.Title = "RecipeDetails";
+}
+<center><h2>Recipe Details</h2></center>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Prepration Time</th>
+                <th>Cooking Time</th>
+                <th>Ingredients</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Method</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td>@Model.Title </td>
+                <td>@Model.Image</td>
+                <td>@Model.PrepTime</td>
+                <td>@Model.CookTime</td>
+                <td>@Model.Ingredients</td>
+                <td>@Model.Quantity</td>
+                <td>@Model.Unit</td>
+                <td>@Model.Method</td>
+                <td> <a href="/Home/EditRecipe/@Model.Id" class="btn btn-xs btn-success">Edit</a> </td>
+                <td> <a href="/Home/Delete/@Model.Id" class="btn btn-xs btn-danger">Delete</a> </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

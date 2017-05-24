@@ -1,0 +1,75 @@
+﻿@model GrmAdmin.Models.User
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Signup.js"></script>
+<div class="signin-form">
+    <div class="container">
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin", id = "register" }))
+        {
+            @Html.ValidationSummary(true)
+            <center>
+                <h2 class="form-signin-heading"><font color="#0c6a00">Register</font></h2><hr />
+                <div id="error">
+                    <!-- error will be shown here ! -->
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+
+                                @Html.TextBoxFor(model =>model.FirstName, new { @class = "form-control", placeholder = "Enter First Name", id = "FirstName" })
+                                @Html.ValidationMessageFor(model => model.FirstName)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", placeholder = "Enter Last Name", id = "LastName" })
+                                @Html.ValidationMessageFor(model => model.LastName)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <div class="form-group">
+
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", placeholder = "Enter Email" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                                <div id="validity">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter Password", id = "Password" })
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <center><input class="btn-success" type="submit" value="Register"></center>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+
+        }
+
+    </div>
+</div>

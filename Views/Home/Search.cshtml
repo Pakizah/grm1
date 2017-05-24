@@ -1,0 +1,16 @@
+﻿@model IEnumerable<GrmAdmin.Models.Recipe>
+
+
+@foreach (var v in Model)
+{
+
+    <tr>
+        <td>@v.Title </td>
+        <td>@v.Image</td>
+        <td>@v.PrepTime</td>
+        <td>@v.CookTime</td>
+        <td> <a href="/Home/RecipeDetails/@v.Id" class="btn btn-xs btn-danger">View</a> </td>
+    </tr>
+}
+
+

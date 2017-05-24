@@ -1,0 +1,95 @@
+﻿@model GrmAdmin.Models.Ingredient
+@{
+    ViewBag.Title = "EditIngredient";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/Ingredient.js"></script>
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-large box-with-header">
+                <div class="panel-body">
+                    <form class="form-horizontal" id="ingredient" method="post" role="form" action="@Url.Action("UpdateIngredient", "Home", new { id = @Model.Id})">
+                        <div class="form-group">
+                            <label for="Name" class="col-sm-1 control-label">Ingredient Name</label>
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter Name" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Type" class="col-sm-1 control-label">Category</label>
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(model => model.Type, new SelectList(
+                                new List<Object>{
+                                new { value = "Fruit" , text = "Fruit"  },
+                                new { value = "Spice"  , text = "Spice" },
+                                new { value = "Poultry"  , text = "Poultry" },
+                                new { value = "Dairy"  , text = "Dairy" },
+                                new { value = "Vegetable" , text = "Vegetable"}},
+                            "value", "text",
+                    2), new { @class = "selectpicker form-control", placeholder = "Select Category" })
+                            </div>
+                        </div>
+                            <div class=" form-group">
+                                <label for="Image" class="col-sm-1 control-label">Upload Image</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Image, new { @class = "form-control", type = "file", placeholder = "Upload Image" })
+                                </div>
+                            </div>
+                            <div class=" form-group">
+                                <label for="Urdu" class="col-sm-1 control-label">Urdu Name</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Urdu, new { @class = "form-control", placeholder = "Enter Urdu Name" })
+                                </div>
+                            </div>
+                            <div class=" form-group">
+                                <label for="Type" class="col-sm-1 control-label">Unit</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownListFor(model => model.Unit, new SelectList(
+                                new List<Object>{
+                                new { value = "Milligram" , text = "Milligram"  },
+                                new { value = "Gram" , text = "Gram"  },
+                                new { value = "Kilogram"  , text = "Kilogram" },
+                                new { value = "Loaf"  , text = "Loaf" },
+                                new { value = "Leaf"  , text = "Leaf" },
+                                new { value = "Cup"  , text = "Cup" },
+                                new { value = "Tbsp"  , text = "Tbsp" },
+                                new { value = "Tsp" , text = "Tsp"},
+                                new { value = "Liter"  , text = "Liter" },
+                                new { value = "Milliliter"  , text = "Milliliter" }},
+                            "value", "text",
+                    2), new { @class = "selectpicker form-control", placeholder = "Select Category" })
+                                </div>
+                            </div>
+                        <div class=" form-group">
+                            <label for="NutritionFact" class="col-sm-1 control-label">Nutritional Facts</label>
+                            <div class="col-sm-6">
+                                @Html.TextAreaFor(model => model.NutritionFact, new { @class = "form-control", placeholder = "Enter Nutritional Facts with splitter" })
+                            </div>
+                        </div> 
+
+                            <br />
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"></label>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn-success">Submit</button>
+                                </div>
+                            </div>
+
+</form>
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,203 @@
+﻿@model GrmAdmin.Models.Recipe
+@{
+    ViewBag.Title = "EditRecipe";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/Recipe.js"></script>
+<style>
+    table, tr, td {
+        border: 3px solid black;
+    }
+</style>
+<div class="page-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-large box-with-header">
+                <div class="panel-body">
+                    <form class="form-horizontal" id="recipe" method="post" role="form" action="@Url.Action("UpdateConfirm", "Home", new { id = @Model.Id})">
+                        <div class="form-group">
+                            <label for="Title" class="col-sm-1 control-label">Recipe Title</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Enter Title" })
+                            </div>
+                            <label for="Category" class="col-sm-1 control-label">Category</label>
+                            <div class="col-sm-2">
+                                @Html.DropDownListFor(model => model.Category, new SelectList(
+                                new List<Object>{
+                                new { value = "Main Course" , text = "Main Course"  },
+                                new { value = "Beverages"  , text = "Beverages" },
+                                new { value = "Dessert" , text = "Dessert"}},
+                            "value", "text",
+                    2), new { @class = "selectpicker form-control", placeholder = "Select Category" })
+                            </div>
+                            <label for="PrepTime" class="col-sm-1 control-label">Prep. Time</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.PrepTime, new { @class = "form-control", type = "number", min = "0", max = "360", placeholder = "Enter minutes" })
+                            </div>
+                            <label for="CookTime" class="col-sm-1 control-label">Cook. Time</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.CookTime, new { @class = "form-control", type = "number", min = "0", max = "360", placeholder = "Enter minutes" })
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label class="col-sm-1 control-label">Upload Image</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Image, new { @class = "form-control", type = "file", placeholder = "Upload Image" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label" for="multiselect1">Ingredients</label>
+                            <div class="col-md-11">
+                                <select multiple="multiple" class="ingredient form-control custom-scroll" title="Click to Select a Ingredient">
+                                    @Html.Action("Dropdown")
+                                </select>
+                                    <!--  <select multiple="multiple" class="ingredient form-control custom-scroll" title="Click to Select a Ingredient">
+               <optgroup label="Fruits">
+                   <option>Apple</option>
+                   <option>Apricot</option>
+                   <option>Black Pepper</option>
+                   <option>Brinjal</option>
+                   <option>Butter</option>
+                   <option>Broccoli</option>
+                   <option>Chicken</option>
+                   <option>Capsicum</option>
+               </optgroup>
+               <optgroup label="Spices">
+                   <option>Coriander</option>
+                   <option>Egg</option>
+                   <option>Frankfurt</option>
+                   <option>Ginger</option>
+                   <option>Garlic</option>
+
+                   <option>Green Chillies</option>
+                   <option>Lemon</option>
+                   <option>Mango</option>
+                   <option>Milk</option>
+                   <option>Macroni</option>
+                   <option>Noodles</option>
+               </optgroup>
+           </select>-->
+</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label"></label>
+                            <div class="col-sm-2">
+                                <button type="button" id="done">Add</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">Ingredient Table</label>
+                            <div class="col-sm-11">
+                                <table id="table1">
+                                    <tr>
+                                        <th class="col-sm-3">
+                                            Ingredient
+                                        </th>
+                                        <th class="col-sm-3">
+                                            Quantity
+                                        </th>
+                                        <th class="col-sm-3">
+                                            Set Unit
+                                        </th>
+                                        <th class="col-sm-1">
+                                            Action
+                                        </th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    @Html.TextAreaFor(model => model.Ingredients, new { @class = "form-control", rows = "2", placeholder = "Enter Ingredient Names comma seperated" })
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    @Html.TextAreaFor(model => model.Quantity, new { @class = "form-control", rows = "2", placeholder = "Enter Respective Quantity comma seperated" })
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    @Html.TextAreaFor(model => model.Unit, new { @class = "form-control", rows = "2", placeholder = "Enter Respective Units comma seperated" })
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label class="col-sm-1" />
+                                                <button type="button" class="removebutton btn-danger" id="Reset">Reset</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+                        <div>
+                            <label class="col-sm-1 control-label">Method</label>
+                            <div>
+                                @Html.TextAreaFor(model => model.Method, new { @class = "form-control", rows = 6, placeholder = "Write Method Here.Each line with splitter % " })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label"></label>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn-success">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ingredients = [];
+            $("#done").click(function () {
+                var flag = false;
+                $.each($(".ingredient option:selected"), function () {
+                    // $('#table1').append('<tr><td id="Ingredient" class="form-control">' + $(this).val() + '</td><td><input type="text" class="form-control" placeholder="Set Quantity" id="Quantity"</td><td><select id="Unit" class="selectpicker form-control"><option>Tsp</option><option>Tbs</option><option>Grams</option></select></td><td><label class="col-sm-2 control-label"></label><button type="button" class="removebutton btn-danger" id="remove">Remove</button></td></tr>');
+                    if (ingredients.length == 0) {
+                        ingredients.push($(this).val());
+                    }
+                    else {
+                        for (var i = 0; i < ingredients.length; i++) {
+                            var item = ingredients[i];
+                            if (item == $(this).val()) {
+                                flag = true;
+                                alert("Already added");
+
+                            }
+                        }
+                        if (flag == false) {
+                            ingredients.push($(this).val());
+                        }
+                    }
+                });
+                $('#table1 tr:last td:first textarea').html(@Html.Raw(Json.Encode(Model.Ingredients)) + "," + ingredients.join(", "));
+                alert("You have selected the ingredients - " + ingredients.join(", "));
+            });
+
+            });
+
+   /*     $(document).on('click', 'button.removebutton', function () {
+            alert("Reset");
+            $("#Ingredients").val("");
+            $("#Quantity").val("");
+            $("#Unit").val("");
+            res = true;
+        });*/
+
+</script>
+
+
+
+
+
+

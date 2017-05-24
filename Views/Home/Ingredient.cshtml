@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Ingredient";
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div class="page-content">    
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Ajax.BeginForm("SearchIngredients", new AjaxOptions()
+                {
+                    UpdateTargetId = "searchResult",
+                    HttpMethod = "Get",
+                    InsertionMode = InsertionMode.Replace,
+
+                }))
+            {
+
+                <div class="form-group">
+                    @Html.TextBox("keyword", null, new { @class = "col-sm-2 ", placeholder = "Enter Ingredient Name" })
+                    <button type="submit" class="col-sm-1 btn-success">Search</button>
+                    </div>
+
+                <br><br>
+
+
+                <div class="content-box-large box-with-header">
+                    <div class="content-box-header">
+                        <center><h2>Ingredient Table</h2></center>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Image</th>
+                                    <th>Urdu</th>
+                                    <th>Unit</th>
+                                    <th colspan="2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResult">
+                                @Html.Action("SearchIngredients", new { keyword = "" })
+                            </tbody>
+                        </table>
+                    </div>
+                    <br /><br />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
